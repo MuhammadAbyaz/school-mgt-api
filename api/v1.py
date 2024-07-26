@@ -1,6 +1,4 @@
 from fastapi import APIRouter
-from module.student.router import router as student_router
-
-
+from ..routers import student
 router = APIRouter(prefix="/v1")
-router.include_router(student_router)
+router.include_router(student.router)
