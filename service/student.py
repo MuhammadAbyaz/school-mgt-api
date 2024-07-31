@@ -15,7 +15,7 @@ class StudentService:
     def find_all(self)->List[Dict]:
         return self.student_repository.find();
     def find_by_id(self,id)->Dict:
-        return self.student_repository.findOne(id)
+        return self.student_repository.find_one(id)
     def insert(self,data:Dict)->str | Dict:
         try:
            student_dto = CreateStudent(**data)
@@ -23,7 +23,7 @@ class StudentService:
         except ValidationError as e:
             return {"fields": [error["loc"][0] for error in e.errors()], "messages": [error["msg"] for error in e.errors()]}
     def update(self,id:int,data:Dict)->str|Dict:
-        student_data = self.student_repository.findOne(id)
+        student_data = self.student_repository.find_one(id)
         if student_data:
             try:
                 updated_student = UpdateStudent(**{**student_data, **data})

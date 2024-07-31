@@ -17,7 +17,7 @@ async def lifespan(app:FastAPI):
         schemas = {
             "students": Student().schema
         }
-        set_schemas(app.mongodb_client[config["DB_NAME"]],schemas)
+        set_schemas(app.database,schemas)
         yield
         app.mongodb_client.close()
     
