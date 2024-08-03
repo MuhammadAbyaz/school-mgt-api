@@ -22,8 +22,8 @@ async def lifespan(app:FastAPI):
         app.mongodb_client.close()
     
 app = FastAPI(lifespan=lifespan)
-
 app.include_router(router=v1.router)
+
 
 @app.get("/healthcheck")
 def healthCheck() -> str:
